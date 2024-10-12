@@ -5,6 +5,7 @@ import 'package:recharge_balance/cubits/home_cubit.dart';
 import 'package:recharge_balance/cubits/lang_cubit.dart';
 import 'package:recharge_balance/cubits/lang_state.dart';
 import 'package:recharge_balance/views/home_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'generated/l10n.dart';
 
 void main() {
@@ -14,15 +15,34 @@ void main() {
   ));
 }
 
-class EasyRecharge extends StatelessWidget {
+class EasyRecharge extends StatefulWidget {
   const EasyRecharge({super.key});
+
+  @override
+  State<EasyRecharge> createState() => _EasyRechargeState();
+}
+
+class _EasyRechargeState extends State<EasyRecharge> {
+  String? langg;
+
+  @override
+  void initState() {
+    getLangFromLDB();
+    super.initState();
+  }
+
+  void getLangFromLDB() async {
+    var pref = await SharedPreferences.getInstance();
+    langg = pref.getString('lang');
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LangCubit, LangState>(
       builder: (context, state) {
         return MaterialApp(
-          locale: state is Lang ? Locale(state.lang) : const Locale('ar'),
+          locale: state is Lang ? Locale(state.lang) : Locale(langg ?? 'ar'),
           localizationsDelegates: const [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
