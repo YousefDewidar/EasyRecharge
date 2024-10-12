@@ -10,12 +10,12 @@ import 'generated/l10n.dart';
 void main() {
   runApp(BlocProvider(
     create: (context) => LangCubit(),
-    child: const RechargeBalance(),
+    child: const EasyRecharge(),
   ));
 }
 
-class RechargeBalance extends StatelessWidget {
-  const RechargeBalance({super.key});
+class EasyRecharge extends StatelessWidget {
+  const EasyRecharge({super.key});
 
   @override
   Widget build(BuildContext context) {
