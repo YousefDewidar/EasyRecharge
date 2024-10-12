@@ -7,7 +7,7 @@
 
   
     <application
-        android:label="recharge_balance"
+        android:label="Easy Recharge"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,5 +1,5 @@
+import 'package:easy_recharge/cubits/lang_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:recharge_balance/cubits/lang_state.dart';
 
 class LangCubit extends Cubit<LangState> {
   LangCubit() : super((LangInit()));

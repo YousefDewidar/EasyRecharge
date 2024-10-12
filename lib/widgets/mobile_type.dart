@@ -1,6 +1,6 @@
+import 'package:easy_recharge/cubits/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:recharge_balance/cubits/home_cubit.dart';
 
 class MobileType extends StatefulWidget {
   final Color color;

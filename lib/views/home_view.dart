@@ -1,11 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:easy_recharge/cubits/lang_cubit.dart';
+import 'package:easy_recharge/generated/l10n.dart';
+import 'package:easy_recharge/widgets/mobile_type.dart';
+import 'package:easy_recharge/widgets/recharge_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:recharge_balance/cubits/lang_cubit.dart';
-import 'package:recharge_balance/generated/l10n.dart';
-import 'package:recharge_balance/widgets/mobile_type.dart';
-import 'package:recharge_balance/widgets/recharge_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeView extends StatelessWidget {

@@ -1,10 +1,10 @@
+import 'package:easy_recharge/cubits/home_cubit.dart';
+import 'package:easy_recharge/cubits/lang_cubit.dart';
+import 'package:easy_recharge/cubits/lang_state.dart';
+import 'package:easy_recharge/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:recharge_balance/cubits/home_cubit.dart';
-import 'package:recharge_balance/cubits/lang_cubit.dart';
-import 'package:recharge_balance/cubits/lang_state.dart';
-import 'package:recharge_balance/views/home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'generated/l10n.dart';
 

@@ -1,10 +1,10 @@
 import 'dart:io';
 
+import 'package:easy_recharge/cubits/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:recharge_balance/cubits/home_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../generated/l10n.dart';
