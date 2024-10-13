@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Choose method type first"),
         "etisalat": MessageLookupByLibrary.simpleMessage("Etisalat"),
         "orange": MessageLookupByLibrary.simpleMessage("Orange"),
+        "services": MessageLookupByLibrary.simpleMessage("Choose your service"),
         "title": MessageLookupByLibrary.simpleMessage("Recharge Balance"),
         "try_again": MessageLookupByLibrary.simpleMessage("Try Again"),
         "vodafone": MessageLookupByLibrary.simpleMessage("Vodafone"),

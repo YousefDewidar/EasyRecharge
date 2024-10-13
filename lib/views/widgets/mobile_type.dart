@@ -6,12 +6,14 @@ class MobileType extends StatefulWidget {
   final Color color;
   final String name;
   final String type;
+  final String image;
 
   const MobileType({
     super.key,
     required this.color,
     required this.name,
     required this.type,
+    required this.image,
   });
 
   @override
@@ -33,19 +35,25 @@ class _MobileTypeState extends State<MobileType> {
         hasChecked = !hasChecked;
         setState(() {});
       },
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
         decoration: BoxDecoration(
-            color: widget.color,
+            color: hasChecked ? widget.color : widget.color.withOpacity(.6),
             border: hasChecked
                 ? Border.all(color: Colors.white, width: 2)
                 : const Border()),
-        height: 80,
-        width: 85,
-        child: Center(
-          child: Text(
-            widget.name,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-          ),
+        height: 160,
+        width: 120,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(widget.image, width: 100, height: 80),
+            const SizedBox(height: 10),
+            Text(
+              widget.name,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            ),
+          ],
         ),
       ),
     );

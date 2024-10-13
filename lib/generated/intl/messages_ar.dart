@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose": MessageLookupByLibrary.simpleMessage("اختر شركة الشحن اولا"),
         "etisalat": MessageLookupByLibrary.simpleMessage("اتصالات"),
         "orange": MessageLookupByLibrary.simpleMessage("اورنج"),
+        "services": MessageLookupByLibrary.simpleMessage("اختر شركة الشحن"),
         "title": MessageLookupByLibrary.simpleMessage("شحن الرصيد"),
         "try_again": MessageLookupByLibrary.simpleMessage("اعد المحاولة"),
         "vodafone": MessageLookupByLibrary.simpleMessage("ڤودافون"),
