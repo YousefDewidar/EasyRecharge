@@ -110,10 +110,10 @@ class S {
     );
   }
 
-  /// `Choose method type first`
+  /// `Choose your service first`
   String get choose {
     return Intl.message(
-      'Choose method type first',
+      'Choose your service first',
       name: 'choose',
       desc: '',
       args: [],

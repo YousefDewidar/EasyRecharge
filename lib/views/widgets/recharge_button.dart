@@ -10,13 +10,16 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../generated/l10n.dart';
 
 class RechargeButton extends StatelessWidget {
+  final int camOrgal;
+
   const RechargeButton({
     super.key,
+    required this.camOrgal,
   });
 
-  Future<File?> pickImageFromCamera() async {
+  Future<File?> pickImageFromCameraOrGallery({required int camOrgal}) async {
     final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+        await ImagePicker().pickImage(source: ImageSource.values[camOrgal]);
 
     if (pickedFile != null) {
       return File(pickedFile.path);
@@ -44,18 +47,22 @@ class RechargeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: const ButtonStyle(
+        alignment: Alignment.center,
         foregroundColor: WidgetStatePropertyAll(Colors.black),
-        backgroundColor: WidgetStatePropertyAll(Color.fromARGB(209, 238, 245, 219)),
-        shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2))))
+        backgroundColor:
+            WidgetStatePropertyAll(Color.fromARGB(209, 234, 215, 255)),
+        shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(2)))),
       ),
       onPressed: () async {
         String? methodType = context.read<HomeCubit>().methodType;
         if (methodType != null) {
-          var image = await pickImageFromCamera();
+          var image = await pickImageFromCameraOrGallery(camOrgal: camOrgal);
           if (image != null) {
             final InputImage inputImage = InputImage.fromFile(image);
             // ignore: use_build_context_synchronously
             String cardNum = await getCardNum(inputImage, context);
+
             switch (methodType) {
               case 'فودافون':
                 launchUrl(Uri(
@@ -85,23 +92,28 @@ class RechargeButton extends StatelessWidget {
           }
         } else {
           SnackBar snackBar = SnackBar(
-              backgroundColor: Colors.transparent,
-              padding: const EdgeInsets.all(40),
-              content: Text(
-                textAlign: TextAlign.center,
-                S.of(context).choose,
-                style: const TextStyle(color: Colors.white, fontSize: 20),
-              ));
+            backgroundColor: Colors.transparent,
+            padding: const EdgeInsets.all(40),
+            content: Text(
+              textAlign: TextAlign.center,
+              S.of(context).choose,
+              style: const TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          );
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
       },
-      child: Text(
-        S.of(context).charge,
-        style: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+      child: camOrgal == 1
+          ? const Icon(
+              Icons.perm_media,
+            )
+          : Text(
+              S.of(context).charge,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
     );
   }
 }

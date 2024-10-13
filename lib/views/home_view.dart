@@ -48,9 +48,9 @@ class HomeView extends StatelessWidget {
             image: DecorationImage(
                 image: AssetImage('assets/stars1.png'), fit: BoxFit.fill)),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            const SizedBox(height: 50),
             Text(
               S.of(context).services,
               textAlign: TextAlign.center,
@@ -97,11 +97,19 @@ class HomeView extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 30),
+            const Spacer(),
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: RechargeButton(),
+              padding: EdgeInsets.symmetric(horizontal: 26.0),
+              child: Row(
+                textDirection: TextDirection.ltr,
+                children: [
+                  Expanded(child: RechargeButton(camOrgal: 1)),
+                  SizedBox(width: 5),
+                  Expanded(flex: 4, child: RechargeButton(camOrgal: 0)),
+                ],
+              ),
             ),
+            const SizedBox(height: 100),
           ],
         ),
       ),
