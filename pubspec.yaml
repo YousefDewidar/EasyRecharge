@@ -13,13 +13,13 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.8
-  image_picker: ^1.1.2
-  google_mlkit_text_recognition: ^0.14.0
-  url_launcher: ^6.3.0
-  flutter_bloc: ^8.1.6
-  shared_preferences: ^2.3.2
-  icons_launcher: ^3.0.0
+  cupertino_icons:
+  image_picker:
+  google_mlkit_text_recognition:
+  url_launcher:
+  flutter_bloc:
+  shared_preferences:
+  icons_launcher:
 
   flutter_localizations:
     sdk: flutter
@@ -35,7 +35,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true
