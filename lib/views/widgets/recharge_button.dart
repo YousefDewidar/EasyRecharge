@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:easy_recharge/cubits/home_cubit.dart';
@@ -43,6 +46,13 @@ class RechargeButton extends StatelessWidget {
     return S.of(context).try_again;
   }
 
+  void lanchTel(String cardNum, String code) {
+    launchUrl(Uri(
+      scheme: 'tel',
+      path: '*$code*$cardNum#',
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -60,47 +70,30 @@ class RechargeButton extends StatelessWidget {
           var image = await pickImageFromCameraOrGallery(camOrgal: camOrgal);
           if (image != null) {
             final InputImage inputImage = InputImage.fromFile(image);
-            // ignore: use_build_context_synchronously
             String cardNum = await getCardNum(inputImage, context);
+            log(cardNum);
 
-            switch (methodType) {
-              case 'فودافون':
-                launchUrl(Uri(
-                  scheme: 'tel',
-                  path: '*858*$cardNum#',
-                ));
-                break;
-              case 'اتصالات':
-                launchUrl(Uri(
-                  scheme: 'tel',
-                  path: '*556*$cardNum#',
-                ));
-                break;
-              case 'اورانج':
-                launchUrl(Uri(
-                  scheme: 'tel',
-                  path: '*102*$cardNum#',
-                ));
-                break;
-              case 'وي':
-                launchUrl(Uri(
-                  scheme: 'tel',
-                  path: '*322*$cardNum#',
-                ));
-                break;
+            if (cardNum != S.of(context).try_again) {
+              switch (methodType) {
+                case 'فودافون':
+                  lanchTel(cardNum, '858');
+                  break;
+                case 'اتصالات':
+                  lanchTel(cardNum, '556');
+                  break;
+                case 'اورانج':
+                  lanchTel(cardNum, '102');
+                  break;
+                case 'وي':
+                  lanchTel(cardNum, '555');
+                  break;
+              }
+            } else {
+              showError(context, S.of(context).try_again);
             }
           }
         } else {
-          SnackBar snackBar = SnackBar(
-            backgroundColor: Colors.transparent,
-            padding: const EdgeInsets.all(40),
-            content: Text(
-              textAlign: TextAlign.center,
-              S.of(context).choose,
-              style: const TextStyle(color: Colors.white, fontSize: 20),
-            ),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          showError(context, S.of(context).choose);
         }
       },
       child: camOrgal == 1
@@ -115,5 +108,18 @@ class RechargeButton extends StatelessWidget {
               ),
             ),
     );
+  }
+
+  void showError(BuildContext context, String message) {
+    SnackBar snackBar = SnackBar(
+      backgroundColor: Colors.transparent,
+      padding: const EdgeInsets.all(40),
+      content: Text(
+        message,
+        textAlign: TextAlign.center,
+        style: const TextStyle(color: Colors.white, fontSize: 20),
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

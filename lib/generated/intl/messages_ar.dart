@@ -28,7 +28,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "orange": MessageLookupByLibrary.simpleMessage("اورنج"),
         "services": MessageLookupByLibrary.simpleMessage("اختر شركة الشحن"),
         "title": MessageLookupByLibrary.simpleMessage("شحن الرصيد"),
-        "try_again": MessageLookupByLibrary.simpleMessage("اعد المحاولة"),
+        "try_again": MessageLookupByLibrary.simpleMessage(
+            "تحقق من الكارت وحاول مرة أخرى"),
         "vodafone": MessageLookupByLibrary.simpleMessage("ڤودافون"),
         "we": MessageLookupByLibrary.simpleMessage("وي")
       };

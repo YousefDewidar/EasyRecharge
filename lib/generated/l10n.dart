@@ -90,10 +90,10 @@ class S {
     );
   }
 
-  /// `Try Again`
+  /// `Check the card and try again`
   String get try_again {
     return Intl.message(
-      'Try Again',
+      'Check the card and try again',
       name: 'try_again',
       desc: '',
       args: [],

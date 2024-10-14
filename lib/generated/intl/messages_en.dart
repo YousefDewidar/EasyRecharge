@@ -29,7 +29,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "orange": MessageLookupByLibrary.simpleMessage("Orange"),
         "services": MessageLookupByLibrary.simpleMessage("Choose your service"),
         "title": MessageLookupByLibrary.simpleMessage("Recharge Balance"),
-        "try_again": MessageLookupByLibrary.simpleMessage("Try Again"),
+        "try_again": MessageLookupByLibrary.simpleMessage(
+            "Check the card and try again"),
         "vodafone": MessageLookupByLibrary.simpleMessage("Vodafone"),
         "we": MessageLookupByLibrary.simpleMessage("WE ")
       };
