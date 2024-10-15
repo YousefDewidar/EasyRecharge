@@ -1,15 +1,15 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'package:easy_recharge/cubits/lang_cubit.dart';
 import 'package:easy_recharge/generated/l10n.dart';
-import 'package:easy_recharge/views/widgets/mobile_type.dart';
 import 'package:easy_recharge/views/widgets/recharge_button.dart';
+import 'package:easy_recharge/views/widgets/types_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,44 +60,7 @@ class HomeView extends StatelessWidget {
                   color: Color.fromARGB(208, 255, 255, 255)),
             ),
             const SizedBox(height: 25),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                MobileType(
-                  color: const Color.fromARGB(255, 244, 119, 37),
-                  name: S.of(context).vodafone,
-                  type: "فودافون",
-                  image: 'assets/pngegg.png',
-                ),
-                const SizedBox(width: 8),
-                MobileType(
-                  color: Colors.green,
-                  name: S.of(context).etisalat,
-                  type: "اتصالات",
-                  image: 'assets/eti.png',
-                ),
-              ],
-            ),
-            const SizedBox(height: 15),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                MobileType(
-                  color: Colors.orange,
-                  name: S.of(context).orange,
-                  type: "اورانج",
-                  image: 'assets/orange-logo-116093713624dxieyabws.png',
-                ),
-                const SizedBox(width: 8),
-                MobileType(
-                  color: Colors.deepPurple,
-                  name: S.of(context).we,
-                  type: "وي",
-                  image: 'assets/المصرية للاتصالات.png',
-                ),
-              ],
-            ),
-            const Spacer(),
+            TypesGridView(),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 26.0),
               child: Row(

@@ -7,5 +7,4 @@ class HomeCubit extends Cubit<HomeState> {
 
   String? methodType;
 
-
 }

@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:easy_recharge/cubits/home_cubit.dart';
@@ -12,13 +11,20 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../generated/l10n.dart';
 
-class RechargeButton extends StatelessWidget {
+class RechargeButton extends StatefulWidget {
   final int camOrgal;
 
   const RechargeButton({
     super.key,
     required this.camOrgal,
   });
+
+  @override
+  State<RechargeButton> createState() => _RechargeButtonState();
+}
+
+class _RechargeButtonState extends State<RechargeButton> {
+  bool process = false;
 
   Future<File?> pickImageFromCameraOrGallery({required int camOrgal}) async {
     final pickedFile =
@@ -33,6 +39,7 @@ class RechargeButton extends StatelessWidget {
 
   Future<String> getCardNum(InputImage inputImage, context) async {
     final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
+
     final RecognizedText recognizedText =
         await textRecognizer.processImage(inputImage);
 
@@ -53,6 +60,19 @@ class RechargeButton extends StatelessWidget {
     ));
   }
 
+  void showError(BuildContext context, String message) {
+    SnackBar snackBar = SnackBar(
+      backgroundColor: Colors.transparent,
+      padding: const EdgeInsets.all(40),
+      content: Text(
+        message,
+        textAlign: TextAlign.center,
+        style: const TextStyle(color: Colors.white, fontSize: 20),
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -67,12 +87,15 @@ class RechargeButton extends StatelessWidget {
       onPressed: () async {
         String? methodType = context.read<HomeCubit>().methodType;
         if (methodType != null) {
-          var image = await pickImageFromCameraOrGallery(camOrgal: camOrgal);
+          var image =
+              await pickImageFromCameraOrGallery(camOrgal: widget.camOrgal);
           if (image != null) {
+            process = true;
+            setState(() {});
             final InputImage inputImage = InputImage.fromFile(image);
             String cardNum = await getCardNum(inputImage, context);
-            log(cardNum);
-
+            process = false;
+            setState(() {});
             if (cardNum != S.of(context).try_again) {
               switch (methodType) {
                 case 'فودافون':
@@ -96,30 +119,22 @@ class RechargeButton extends StatelessWidget {
           showError(context, S.of(context).choose);
         }
       },
-      child: camOrgal == 1
-          ? const Icon(
-              Icons.perm_media,
-            )
-          : Text(
-              S.of(context).charge,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+      child: process
+          ? SizedBox(
+              height: 22,
+              width: 22,
+              child: CircularProgressIndicator(color: Colors.orange))
+          : widget.camOrgal == 1
+              ? const Icon(
+                  Icons.perm_media,
+                )
+              : Text(
+                  S.of(context).charge,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
     );
-  }
-
-  void showError(BuildContext context, String message) {
-    SnackBar snackBar = SnackBar(
-      backgroundColor: Colors.transparent,
-      padding: const EdgeInsets.all(40),
-      content: Text(
-        message,
-        textAlign: TextAlign.center,
-        style: const TextStyle(color: Colors.white, fontSize: 20),
-      ),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
